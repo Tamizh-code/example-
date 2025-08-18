@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Age Calculator</title>
+  <meta content='50;url=http://agecalculator.blogspot.com/' http-equiv='refresh'/>
+</head>
+<body><center>
+  <h2>Simple Age Calculator</h2>
+  <form id="ageForm">
+    <label for="birthdate">Enter your birthdate (YYYY-MM-DD):</label><br/>
+    <input type="date" id="birthdate" name="birthdate" required/>
+    <input type="submit" value="Calculate Age"/>
+  </form>
+  <p><strong>Age:</strong> <span id="ageResult"></span></p>
+
+  <script>
+    document.getElementById('ageForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const birthdateStr = document.getElementById('birthdate').value;
+      const birthdate = new Date(birthdateStr);
+      const today = new Date();
+      let age = today.getFullYear() - birthdate.getFullYear();
+      const m = today.getMonth() - birthdate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthdate.getDate())) {
+        age--;
+      }
+      document.getElementById('ageResult').textContent = age + ' years';
+    });
+  </script>
+  </center>
+</body>
+</html>
